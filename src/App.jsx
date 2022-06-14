@@ -61,6 +61,37 @@ export function App() {
 
   //Anitya.gupta@codepath.org
 
+  function tabclicked()
+  {
+// appInfo.instructions
+    if (selectedCategory==null && selectedRestaurant == null)
+    {
+     return  <Instructions instructions={appInfo.instructions.start} />
+    }
+
+    if (selectedCategory != null && selectedRestaurant==null)
+    {
+       return  <Instructions instructions={appInfo.instructions.onlyCategory} />
+    }
+    if (selectedCategory == null && selectedRestaurant != null)
+    {
+      return  <Instructions instructions={appInfo.instructions.onlyRestaurant} />
+    }
+      if (selectedCategory != null && selectedRestaurant != null && selectedMenu==null)
+    {
+      return  <Instructions instructions={appInfo.instructions.noSelectedItem} />
+    }
+
+    if (selectedCategory != null && selectedRestaurant != null && selectedMenu != null)
+    {
+      return  <Instructions instructions={appInfo.instructions.allSelected} />
+    }
+
+    
+
+
+  }
+
   return (
     <main className="App">
       {/* CATEGORIES COLUMN */}
@@ -75,6 +106,7 @@ export function App() {
               label={category}
               isActive={selectedCategory === category}
               onClick={() => selectCategory(category)}
+                onClose={()=>selectCategory(null)}
             />
           ))}
         </div>
@@ -100,13 +132,15 @@ export function App() {
                 label={restaurant}
                 isActive={selectedRestaurant === restaurant}
                 onClick={() => selectRestaurant(restaurant)}
+                onClose={()=>selectRestaurant(null)}
               ></Chip>
             ))}
           </div>
         </div>
 
         {/* INSTRUCTIONS GO HERE */}
-        <Instructions instructions={appInfo.instructions.start} />
+
+       {tabclicked()}
 
         {/* MENU DISPLAY */}
         <div className="MenuDisplay display">
@@ -121,7 +155,8 @@ export function App() {
                 isActive={selectedMenu === menu}
                 onClick={() => selectMenu(menu)
                 }
-              ></Chip>
+                  onClose={()=>selectMenu(null)}
+      ></Chip>
             )}
           </div>
 
