@@ -36,7 +36,8 @@ export function App() {
   const [selectedMenu, setSelectedMenu] = React.useState(null)
   
   const selectMenu = (menu) => {
-    setSelectedMenu(menu.item_name)
+    setSelectedMenu(menu)
+    console.log(currentMenuItems)
   }
 
   const selectRestaurant = (restaurant) => {
@@ -116,8 +117,10 @@ export function App() {
               <Chip
                 key={menu.item_name}
                 label={menu.item_name}
-                isActive={selectedMenu === menuitem_name}
-                onClick={() => selectMenu(menu)}
+                
+                isActive={selectedMenu === menu}
+                onClick={() => selectMenu(menu)
+                }
               ></Chip>
             )}
           </div>
@@ -126,7 +129,7 @@ export function App() {
           <div className="NutritionFacts nutrition-facts">
             {/* YOUR CODE HERE */}
             {selectedMenu == null ? "" :
-              <NutritionalLabel items={selectedMenu} />
+              <NutritionalLabel item={selectedMenu} />
             }
 
           </div>
