@@ -8,7 +8,7 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import { Instructions } from "./components/Instructions/Instructions";
 
-import { NutritionalLabelFact } from "./components/NutritionalLabel/NutritionalLabel";
+import {NutritionalLabel} from "./components/NutritionalLabel/NutritionalLabel"
 
 // don't move this!
 export const appInfo = {
@@ -36,7 +36,7 @@ export function App() {
   const [selectedMenu, setSelectedMenu] = React.useState(null)
   
   const selectMenu = (menu) => {
-    setSelectedMenu(menu)
+    setSelectedMenu(menu.item_name)
   }
 
   const selectRestaurant = (restaurant) => {
@@ -46,7 +46,7 @@ export function App() {
   var currentMenuItems = [];
 
   if (selectedCategory != null && selectedRestaurant != null) {
-    console.log("yes");
+    
     currentMenuItems = data.filter(
       (menuItem) =>
         menuItem.food_category === selectedCategory &&
@@ -56,7 +56,7 @@ export function App() {
     console.log("JO");
   }
 
-  console.log(currentMenuItems);
+  console.log(selectedMenu);
 
   //Anitya.gupta@codepath.org
 
@@ -116,8 +116,8 @@ export function App() {
               <Chip
                 key={menu.item_name}
                 label={menu.item_name}
-                isActive={selectedMenu === menu.item_name}
-                onClick={() => selectMenu(menu.item_name)}
+                isActive={selectedMenu === menuitem_name}
+                onClick={() => selectMenu(menu)}
               ></Chip>
             )}
           </div>
@@ -125,6 +125,10 @@ export function App() {
           {/* NUTRITION FACTS */}
           <div className="NutritionFacts nutrition-facts">
             {/* YOUR CODE HERE */}
+            {selectedMenu == null ? "" :
+              <NutritionalLabel items={selectedMenu} />
+            }
+
           </div>
         </div>
 
