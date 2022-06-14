@@ -9,7 +9,11 @@ export function NutritionalLabel(props) {
 
       <h4 className="item-name">{`CHANGE_ME`}</h4>
 
-      <ul className="fact-list">{/* WRITE CODE HERE */}</ul>
+      <ul className="fact-list">
+        {/* WRITE CODE HERE */}
+        
+      
+      </ul>
     </div>
   )
 }
